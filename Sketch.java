@@ -1,7 +1,12 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
+
+  boolean UPclick = false;
+  boolean DOWNclick = false;
+  boolean LEFTclick = false;
+  boolean RIGHTclick = false;
+
   float r = 204;
   float g = 255;
   float b = 249;
@@ -34,13 +39,16 @@ public class Sketch extends PApplet {
     background(r,g,b);
 
     if (keyPressed){
-      if (keyCode == UP){
+      if (UPclick) {
         textY--;
-      } else if (keyCode == DOWN){
+      }
+      if (DOWNclick) {
         textY++;
-      } else if (keyCode == LEFT){
+      }
+      if (LEFTclick) {
         textX--;
-      } else if (keyCode == RIGHT){
+      }
+      if (RIGHTclick) {
         textX++;
       }
     }
@@ -77,11 +85,38 @@ public class Sketch extends PApplet {
     r = 0;
     g = 0;
     b = 0;
+
+    if (keyCode == UP) {
+      UPclick = true;
+    }
+    else if (keyCode == DOWN) {
+      DOWNclick = true;
+    }
+    else if (keyCode == LEFT) {
+      LEFTclick = true;
+    }
+    else if (keyCode == RIGHT) {
+      RIGHTclick = true;
+    }
+  }
+
+  public void keyReleased() {
+    if (keyCode == UP) {
+      UPclick = false;
+    }
+    else if (keyCode == DOWN) {
+      DOWNclick = false;
+    }
+    else if (keyCode == LEFT) {
+      LEFTclick = false;
+    }
+    else if (keyCode == RIGHT) {
+      RIGHTclick = false;
+    }
   }
 
   public void keyTyped(){
     typedstr += key;
   }
-
   // define other methods down here.
 }
