@@ -6,6 +6,11 @@ public class Sketch extends PApplet {
   float g = 255;
   float b = 249;
 
+  int textX = 50;
+  int textY = 50;
+
+  String typedstr = "";
+
   /**
    * Called once at the beginning of execution, put your size all in this method
    */
@@ -28,6 +33,26 @@ public class Sketch extends PApplet {
   public void draw() {
     background(r,g,b);
 
+    if (keyPressed){
+      if (keyCode == UP){
+        textY--;
+      } else if (keyCode == DOWN){
+        textY++;
+      } else if (keyCode == LEFT){
+        textX--;
+      } else if (keyCode == RIGHT){
+        textX++;
+      }
+    }
+
+    fill(255,255,255);
+    textSize(40);
+    text(key, textX, textY);
+
+    fill(255,255,255);
+    textSize(40);
+    text(typedstr,0,100);
+
     fill(255,255,255);
     ellipse(mouseX,mouseY,20,20);
 
@@ -46,6 +71,16 @@ public class Sketch extends PApplet {
     r = 26;
     g = 25;
     b = 64;
+  }
+
+  public void keyPressed(){
+    r = 0;
+    g = 0;
+    b = 0;
+  }
+
+  public void keyTyped(){
+    typedstr += key;
   }
 
   // define other methods down here.
